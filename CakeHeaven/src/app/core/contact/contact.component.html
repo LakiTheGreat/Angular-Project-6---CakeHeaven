@@ -1,0 +1,61 @@
+<form novalidate #forma="ngForm">
+  <div class="mb-3">
+    <label for="nameInput" class="form-label">Name: </label>
+    <input
+      type="text"
+      class="form-control"
+      id="nameInput"
+      name="nameInput"
+      [(ngModel)]="name"
+    />
+  </div>
+  <div class="mb-3">
+    <label for="emailInput" class="form-label">Email: </label>
+    <input
+      type="text"
+      class="form-control"
+      id="emailInput"
+      name="emailInput"
+      [(ngModel)]="profile.email"
+      [email]="true"
+      #emailInput="ngModel"
+    />
+    <small
+      *ngIf="
+        emailInput.touched && emailInput.errors && emailInput.errors['email']
+      "
+      class="text-danger"
+      >Valid Email Is Required!</small
+    >
+  </div>
+  <div class="mb-3">
+    <label for="message" class="form-label">Message:</label>
+    <textarea
+      type="password"
+      class="form-control"
+      id="message"
+      name="message"
+      [(ngModel)]="message"
+      required
+      #inputMessage="ngModel"
+    ></textarea>
+    <small
+      *ngIf="
+        inputMessage.touched &&
+        inputMessage.errors &&
+        inputMessage.errors['required']
+      "
+      class="text-danger"
+      >Message is required!</small
+    >
+  </div>
+
+  <button
+    (click)="onSend()"
+    type="submit"
+    class="btn btn-primary"
+    [disabled]="forma.invalid"
+  >
+    Send
+  </button>
+</form>

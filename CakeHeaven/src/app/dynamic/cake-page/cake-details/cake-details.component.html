@@ -1,0 +1,17 @@
+<div class="row">
+  <div class="col-6">
+    <img
+      src="http://localhost:3000/image/cakes/{{ cake._id }}.jpg"
+      alt="slika"
+    />
+  </div>
+  <div class="col-6">
+    <h2>{{ cake.name }}</h2>
+    <p><span class="fw-bold">Main ingredients:</span> {{ cake.ingredients }}</p>
+    <p><span class="fw-bold">Origin:</span> {{ cake.origin }}</p>
+    <p>
+      <span class="fw-bold">Description:</span>
+      {{ cake.description }}
+    </p>
+  </div>
+</div>

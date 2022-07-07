@@ -1,0 +1,14 @@
+<div class="card my-3" style="width: 18rem" [routerLink]="[cake._id]">
+  <img
+    src="http://localhost:3000/image/cakes/{{ cake._id }}.jpg
+    "
+    class="card-img-top"
+    style="height: 200px"
+  />
+  <div class="card-body">
+    <h5 class="card-title">{{ cake.name }}</h5>
+    <p class="card-text">
+      {{ cake.ingredients }}
+    </p>
+  </div>
+</div>

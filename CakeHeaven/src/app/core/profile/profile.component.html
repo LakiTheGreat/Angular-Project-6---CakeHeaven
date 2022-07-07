@@ -1,0 +1,93 @@
+<!-- imported: {{ importedProfile | json }}
+<br />
+new: {{ newProfile | json }} -->
+
+<p *ngIf="profileChanged" class="text-warning">
+  Korisnik je uspesno promenjen.
+</p>
+<form novalidate #forma="ngForm">
+  <div class="mb-3">
+    <label for="firstNameInput" class="form-label">First Name:</label>
+    <input
+      type="email"
+      class="form-control"
+      id="firstNameInput"
+      name="firstNameInput"
+      [(ngModel)]="newProfile.firstName"
+      #inputName="ngModel"
+      [disabled]="!allowEdit"
+      required
+    />
+    <small
+      *ngIf="
+        inputName.touched && inputName.errors && inputName.errors['required']
+      "
+      class="text-danger"
+      >Name is required!</small
+    >
+  </div>
+  <div class="mb-3">
+    <label for="lastNameInput" class="form-label">Last Name</label>
+    <input
+      type="email"
+      class="form-control"
+      id="lastNameInput"
+      name="lastNameInput"
+      [(ngModel)]="newProfile.lastName"
+      [disabled]="!allowEdit"
+      #inputLastName="ngModel"
+      [disabled]="!allowEdit"
+      required
+    />
+    <small
+      *ngIf="
+        inputLastName.touched &&
+        inputLastName.errors &&
+        inputLastName.errors['required']
+      "
+      class="text-danger"
+      >Last Name is required!</small
+    >
+  </div>
+  <div class="mb-3">
+    <label for="emailInput" class="form-label">Email address</label>
+    <input
+      type="email"
+      [email]="true"
+      class="form-control"
+      id="emailInput"
+      name="emailInput"
+      #emailInput="ngModel"
+      [(ngModel)]="newProfile.email"
+      [disabled]="!allowEdit"
+    />
+    <small
+      *ngIf="
+        emailInput.touched && emailInput.errors && emailInput.errors['email']
+      "
+      class="text-danger"
+      >Valid Email Is Required!</small
+    >
+  </div>
+  <div class="mb-3">
+    <input
+      *ngIf="!allowEdit"
+      (click)="allowEdit = !allowEdit"
+      value="Edit"
+      class="btn btn-primary"
+    />
+    <input
+      (click)="onCancel()"
+      *ngIf="allowEdit"
+      value="Cancel"
+      class="btn btn-warning mx-3"
+    />
+    <input
+      (click)="onOk()"
+      *ngIf="allowEdit"
+      value="Ok"
+      class="btn btn-success"
+      [disabled]="forma.invalid"
+    />
+  </div>
+</form>
